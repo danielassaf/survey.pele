@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון להערכת תפקודי פה ובריאות</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #e6f7ff;
+            direction: rtl;
+            text-align: right;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #0099cc;
+            text-align: center;
+            font-size: 2.5em;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 700px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.2em;
+        }
+        input[type="radio"], input[type="text"], input[type="email"], input[type="number"] {
+            margin-left: 10px;
+            font-size: 1.1em;
+        }
+        button {
+            background-color: #0099cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #0077a3;
+        }
+        #result {
+            font-size: 1.5em;
+            color: #33cc33;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #successImage {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>שאלון להערכת תפקודי פה ובריאות</h1>
+    
+    <div class="container">
+        <form id="quizForm">
+            <!-- שאלות מקדימות -->
+            <div class="question">
+                <label>אי-מייל של ההורה:</label><br>
+                <input type="email" id="parentEmail" placeholder="הכנס את כתובת האי-מייל" required><br><br>
+            </div>
+            <div class="question">
+                <label>שם משפחה של הילד/ה:</label><br>
+                <input type="text" id="childLastName" placeholder="הכנס את שם המשפחה" required><br><br>
+            </div>
+            <div class="question">
+                <label>שם פרטי של הילד/ה:</label><br>
+                <input type="text" id="childFirstName" placeholder="הכנס את השם הפרטי" required><br><br>
+            </div>
+            <div class="question">
+                <label>גיל של הילד/ה:</label><br>
+                <input type="number" id="childAge" placeholder="הכנס את גיל הילד/ה" required><br><br>
+            </div>
+            <div class="question">
+                <label>מין של הילד/ה:</label><br>
+                <input type="radio" name="childGender" value="זכר"> זכר<br>
+                <input type="radio" name="childGender" value="נקבה"> נקבה<br><br>
+            </div>
+            <div class="question">
+                <label>תאריך לידה של הילד/ה (YYYY/MM/DD):</label><br>
+                <input type="text" id="childBirthDate" placeholder="הכנס את תאריך הלידה" required pattern="\d{4}/\d{2}/\d{2}"><br><br>
+            </div>
+
+            <!-- שאלות עיקריות -->
+            <div class="question">
+                <label>שאלה 1: פה פתוח במהלך היום</label><br>
+                <input type="radio" name="q1" value="0"> כן באופן קבוע<br>
+                <input type="radio" name="q1" value="1"> לפעמים<br>
+                <input type="radio" name="q1" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 2: פה פתוח בלילה</label><br>
+                <input type="radio" name="q2" value="0"> כן באופן קבוע<br>
+                <input type="radio" name="q2" value="1"> לפעמים<br>
+                <input type="radio" name="q2" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 3: נחירות בלילה</label><br>
+                <input type="radio" name="q3" value="0"> כן באופן קבוע<br>
+                <input type="radio" name="q3" value="1"> לפעמים<br>
+                <input type="radio" name="q3" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 4: גודש באף</label><br>
+                <input type="radio" name="q4" value="0"> כן באופן קבוע<br>
+                <input type="radio" name="q4" value="1"> לפעמים<br>
+                <input type="radio" name="q4" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 5: האם הילד/ה ינק/ה</label><br>
+                <input type="radio" name="q5" value="0"> לא<br>
+                <input type="radio" name="q5" value="1"> כן<br>
+            </div>
+            <div class="question">
+                <label>שאלה 6: האם היתה הנקה מעבר לשישה חודשים</label><br>
+                <input type="radio" name="q6" value="0"> לא<br>
+                <input type="radio" name="q6" value="1"> כן<br>
+            </div>
+            <div class="question">
+                <label>שאלה 7: חריקת שיניים בלילה</label><br>
+                <input type="radio" name="q7" value="0"> לא<br>
+                <input type="radio" name="q7" value="1"> כן<br>
+            </div>
+            <div class="question">
+                <label>שאלה 8: יש מזונות שהילד/ה נמנע/ת מהם</label><br>
+                <input type="radio" name="q8" value="0"> לא<br>
+                <input type="radio" name="q8" value="1"> כן<br>
+            </div>
+            <div class="question">
+                <label>שאלה 9: התפתחות שפה ודיבור</label><br>
+                <input type="radio" name="q9" value="2"> תקינה<br>
+                <input type="radio" name="q9" value="1"> עיכוב בהתפתחות<br>
+                <input type="radio" name="q9" value="0"> בטיפול קלינאית תקשורת<br>
+            </div>
+            <div class="question">
+                <label>שאלה 10: האם הילד/ה מתעורר/ת במהלך הלילה</label><br>
+                <input type="radio" name="q10" value="0"> כן באופן קבוע<br>
+                <input type="radio" name="q10" value="1"> לפעמים<br>
+                <input type="radio" name="q10" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 11: האם יש לילד/ה בעיות יציבה? נופל/ת הרבה? כפופ/ה? חוסר סימטריה? כאבים או תפיסות בצוואר</label><br>
+                <input type="radio" name="q11" value="0"> כן<br>
+                <input type="radio" name="q11" value="1"> לפעמים<br>
+                <input type="radio" name="q11" value="2"> לא<br>
+            </div>
+            <div class="question">
+                <label>שאלה 12: האם הייתם מגדירים את ילדכם/ילדתכם כפעלתנ/ית ובעל/ת יכולת ריכוז מוגבלת</label><br>
+                <input type="radio" name="q12" value="1"> לא<br>
+                <input type="radio" name="q12" value="0"> כן<br>
+            </div>
+            <div class="question">
+                <label>שאלה 13: האם הילד/ה מרטיב/ה במהלך הלילה</label><br>
+                <input type="radio" name="q13" value="0"> כן<br>
+                <input type="radio" name="q13" value="1"> לפעמים<br>
+                <input type="radio" name="q13" value="2"> לא<br>
+            </div>
+
+            <button type="button" onclick="sendEmail()">שלח</button>
+        </form>
+
+        <div id="successImage">
+            <img src="https://via.placeholder.com/300x200.png?text=Congratulations!+You+scored+over+10!" alt="Success Image">
+        </div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            let score = 0;
+            let totalQuestions = 13; // עדכון לפי מספר השאלות
+
+            // חישוב ניקוד על פי כל שאלה
+            let answer1 = document.querySelector('input[name="q1"]:checked');
+            if (answer1) {
+                score += parseInt(answer1.value);
+            }
+            // חישוב שאר השאלות
+
+            return score;
+        }
+
+        function sendEmail() {
+            let parentEmail = document.getElementById('parentEmail').value;
+            let childLastName = document.getElementById('childLastName').value;
+            let childFirstName = document.getElementById('childFirstName').value;
+            let childAge = document.getElementById('childAge').value;
+            let childGender = document.querySelector('input[name="childGender"]:checked').value;
+            let childBirthDate = document.getElementById('childBirthDate').value;
+            let score = calculateScore();
+
+            let templateParams = {
+                parent_email: parentEmail,
+                child_last_name: childLastName,
+                child_first_name: childFirstName,
+                child_age: childAge,
+                child_gender: childGender,
+                child_birth_date: childBirthDate,
+                score: score,
+                email_to: 'pele@pele-dent.co.il' // המייל של המרפאה
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+
+                // הצגת תמונה אם הניקוד מעל 10
+                if (score > 10) {
+                    document.getElementById("successImage").style.display = "block";
+                } else {
+                    alert("הנתונים נשלחו בהצלחה!");
+                }
+            }, function(error) {
+                console.log('FAILED...', error);
+                alert("הייתה שגיאה בשליחה. אנא נסה שוב.");
+            });
+        }
+    </script>
+
+</body>
+</html>
